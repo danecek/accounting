@@ -13,16 +13,12 @@ public class DocumentDeleteDialog extends DocumentAbstractDialog {
     private void disableFields() {
         docTypeCB.setDisable(true);
         nameTF.setDisable(true);
-        companyCB.setDisable(true);
-        accountCB.setDisable(true);
-        dueDate.setDisable(true);
+        date.setDisable(true);
         dscTF.setDisable(true);
     }
 
-    public DocumentDeleteDialog(Document d
-    ) {
+    public DocumentDeleteDialog(Document d) {
         super(Messages.Zrus_doklad.cm());
-
         this.d = d;
         disableFields();
         setFields(d);
@@ -31,11 +27,8 @@ public class DocumentDeleteDialog extends DocumentAbstractDialog {
 
     @Override
     public void ok() throws AccException {
-        Facade.instance
-                .deleteDocument(d
-                        .getId());
-        MainWindow.instance
-                .refreshDocumentPanes();
+        Facade.instance.deleteDocument(d.getId());
+        MainWindow.instance.refreshDocumentPanes();
     }
 
     @Override

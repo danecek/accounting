@@ -22,25 +22,10 @@ public class DocumentPane extends AbstrPane<DocumentP> {
     public static class DocumentP extends Document {
 
         public DocumentP(Document d) {
-            super(d.getId(), d.getType(), d.getName(), d.getOptCompany(), d.getOptAccount(),
-                    d.getOptDate(), d.getDescription());
+            super(d.getId(), d.getType(), d.getName(), d.getDate(),
+                    d.getDescription());
         }
 
-        public String getCompanyName() {
-            return getOptCompany().isPresent() ? getOptCompany().get().getName() : "";
-        }
-
-        public String getTypeText() {
-            return getType().getText();
-        }
-
-        public String getAccountNumber() {
-            return getOptAccount().isPresent() ? getOptAccount().get().getNumber() : "";
-        }
-
-        public String getDateText() {
-            return getOptDate().isPresent() ? getOptDate().get().format(Global.instance.df()) : "";
-        }
     }
 
     private final ObservableList<DocumentP> documents;
@@ -59,13 +44,12 @@ public class DocumentPane extends AbstrPane<DocumentP> {
         PaneColumn idCol = propColumn(Messages.Cislo.cm(), "id");
         PaneColumn typeCol = propColumn(Messages.Typ_dokladu.cm(), "typeText");
         PaneColumn nameCol = propColumn(Messages.Jmeno.cm(), "name");
-        PaneColumn companyNameCol = propColumn(Messages.Organizace.cm(), "companyName");
         PaneColumn accountNumberCol = propColumn(Messages.Ucet.cm(), "accountNumber");
         PaneColumn dateCol = propColumn(Messages.Datum.cm(), "dateText");
         PaneColumn descriptionCol = propColumn(Messages.Popis.cm(), "description");
 
         tw.getColumns().addAll(idCol, typeCol, nameCol,
-                companyNameCol, accountNumberCol, dateCol, descriptionCol);
+                accountNumberCol, dateCol, descriptionCol);
         tw.setItems(documents);
         tw.setRowFactory(gencb(
                 DocumentUpdateAction.instance,

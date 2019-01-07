@@ -36,8 +36,8 @@ public final class TransactionDAODefault extends TransactionDAO {
             createInitDal(100L, dodavatele);
             createInitMaDati(500L, fio);
 
-            create(Optional.of(LocalDate.of(2019, 1, 1)), 100L, material, dodavatele, Optional.of(f1), Optional.empty());
-            create(Optional.of(LocalDate.of(2019, 1, 2)), 100L, dodavatele, fio, Optional.of(v1), Optional.of(f1));
+            create(100L, material, dodavatele, Optional.of(f1), Optional.empty());
+            create(100L, dodavatele, fio, Optional.of(v1), Optional.of(f1));
 //            create(Optional.of(LocalDate.of(2019, 1, 6)), 50L, material, dodavatele, "f2", "faktura", "");
         } catch (AccException ex) {
             Logger.getLogger(TransactionDAODefault.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,7 +46,7 @@ public final class TransactionDAODefault extends TransactionDAO {
 
     private void createInitMaDati(long amount, AnalAcc maDati) {
         try {
-            create(Optional.empty(), amount, maDati, AcountDAODefault.instance.getPocatecniUcetRozvazny(), Optional.empty(), Optional.empty());
+            create(amount, maDati, AcountDAODefault.instance.getPocatecniUcetRozvazny(), Optional.empty(), Optional.empty());
         } catch (AccException ex) {
             Logger.getLogger(TransactionDAODefault.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,16 +54,16 @@ public final class TransactionDAODefault extends TransactionDAO {
 
     private void createInitDal(long amount, AnalAcc dal) {
         try {
-            create(Optional.empty(), amount, AcountDAODefault.instance.getPocatecniUcetRozvazny(), dal, Optional.empty(), Optional.empty());
+            create(amount, AcountDAODefault.instance.getPocatecniUcetRozvazny(), dal, Optional.empty(), Optional.empty());
         } catch (AccException ex) {
             Logger.getLogger(TransactionDAODefault.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void create(Optional<LocalDate> date, long amount, AnalAcc madati,
+    public void create(long amount, AnalAcc madati,
             AnalAcc dal, Optional<Document> document, Optional<Document> bindingDocument) throws AccException {
-        Transaction r = new Transaction(new TransactionId(keyC++), date, amount,
+        Transaction r = new Transaction(new TransactionId(keyC++), amount,
                 madati, dal, document, bindingDocument);
         transactionMap.put(r.getId(), r);
     }
@@ -79,10 +79,10 @@ public final class TransactionDAODefault extends TransactionDAO {
     }
 
     @Override
-    public void update(TransactionId id, LocalDate date, long amount,
+    public void update(TransactionId id, long amount,
             AnalAcc madati, AnalAcc dal, Optional<Document> document,
             Optional<Document> bindingDocument) throws AccException {
-        Transaction r = new Transaction(id, Optional.of(date), amount, madati,
+        Transaction r = new Transaction(id, amount, madati,
                 dal, document, bindingDocument);
         transactionMap.replace(id, r);
     }

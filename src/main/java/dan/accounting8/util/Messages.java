@@ -22,10 +22,10 @@ public enum Messages {
     Pocatecni_aktiva, Pocatecni_pasiva, Konecna_aktiva, Konecna_pasiva,
     Pocatecni, Konecna, Tiskarny, Margins, Rozvaha_pro_mesic,
     Ucet_je_pouzit, Souvztaznost, Doklad, Popis_dokladu, Ma_dati_celkem,
-    Konecny_stav, Dal_celkem, Parovy_doklad, Zobraz_organizace, Spolecnosti, Doklady,
-    Popis, Adresa, Zrus_organizaci, Vytvor_organizaci, Zmen_organizaci,
+    Konecny_stav, Dal_celkem, Parovy_doklad, Doklady,
+    Popis, 
     Zobraz_doklady, Vytvor_doklad, Zrus_doklad, Zmen_doklady, Zmen_doklad,
-    Vytvor_fakturu, Zmen_fakturu, Zrus_fakturu, Organizace, Datum_splatnosti,
+    Vytvor_fakturu, Zmen_fakturu, Zrus_fakturu, Datum_splatnosti,
     Typ_dokladu, Vypis_z_uctu, Ostatni, Faktura, Souvisejici_doklad, pro_souvisejici_doklad;
 
     private static final ResourceBundle rb = ResourceBundle.getBundle("dan.accounting8.util.messages", new Locale("cs"));

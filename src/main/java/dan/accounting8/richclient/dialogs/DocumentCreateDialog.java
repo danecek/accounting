@@ -10,7 +10,6 @@ public class DocumentCreateDialog extends DocumentAbstractDialog {
     public DocumentCreateDialog() {
         super(Messages.Vytvor_doklad.cm());
         registerFields();
-        init();
     }
 
     @Override
@@ -18,16 +17,14 @@ public class DocumentCreateDialog extends DocumentAbstractDialog {
         Facade.instance.createDocument(
                 docTypeCB.getValue(),
                 nameTF.getText(),
-                companyCB.getOptCompany(),
-                accountCB.getOptAccount(),
-                dueDate.getOptDate(), 
+                date.getValue(),
                 dscTF.getText());
         MainWindow.instance.refreshDocumentPanes();
     }
 
     @Override
     public void validate() {
-       // setError(message);
+        // setError(message);
     }
 
 }

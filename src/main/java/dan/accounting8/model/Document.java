@@ -8,18 +8,19 @@ public class Document {
     private final DocumentId id;
     private final DocumentType type;
     private final String name;
-    private final Optional<Company> optCompany;
-    private final Optional<AnalAcc> optAccount;
-    private final Optional<LocalDate> optDate;
+   // private final Optional<AnalAcc> optAccount;
+    private final LocalDate date;
     private final String description;
 
-    public Document(DocumentId id, DocumentType type, String name, Optional<Company> optCompany, Optional<AnalAcc> optAccount, Optional<LocalDate> optDate, String description) {
+    public Document(DocumentId id, DocumentType type, String name, LocalDate date,
+  //          Optional<AnalAcc> optAccount, 
+            String description) {
         this.id = id;
         this.type = type;
         this.name = name;
-        this.optCompany = optCompany;
-        this.optAccount = optAccount;
-        this.optDate = optDate;
+        this.date = date;
+        //      this.optCompany = optCompany;
+    //    this.optAccount = optAccount;
         this.description = description;
     }
 
@@ -31,17 +32,39 @@ public class Document {
     }
 
     /**
+     * @return the type
+     */
+    public DocumentType getType() {
+        return type;
+    }
+
+    public String getTypeText() {
+        return getType().getText();
+    }
+
+    /**
      * @return the name
      */
     public String getName() {
         return name;
     }
 
+//    /**
+//     * @return the optAccount
+//     */
+//    public Optional<AnalAcc> getOptAccount() {
+//        return optAccount;
+//    }
+
+//    public String getAccountNumber() {
+//        return optAccount.isPresent() ? optAccount.get().getNumber() : "";
+//    }
+
     /**
-     * @return the type
+     * @return the date
      */
-    public DocumentType getType() {
-        return type;
+    public LocalDate getDate() {
+        return date;
     }
 
     /**
@@ -49,27 +72,6 @@ public class Document {
      */
     public String getDescription() {
         return description;
-    }
-
-    /**
-     * @return the optCompany
-     */
-    public Optional<Company> getOptCompany() {
-        return optCompany;
-    }
-
-    /**
-     * @return the optAccount
-     */
-    public Optional<AnalAcc> getOptAccount() {
-        return optAccount;
-    }
-
-    /**
-     * @return the optDate
-     */
-    public Optional<LocalDate> getOptDate() {
-        return optDate;
     }
 
 }

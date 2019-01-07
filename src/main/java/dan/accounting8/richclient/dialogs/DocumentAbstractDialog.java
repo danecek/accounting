@@ -18,9 +18,7 @@ public abstract class DocumentAbstractDialog extends AbstractDialog {
     protected DocumentId id;
     protected DocTypeCB docTypeCB;
     protected TextField nameTF;
-    protected CompanyCB companyCB;
-    protected AccountCB accountCB;
-    protected AccDatePicker dueDate;
+    protected AccDatePicker date;
     protected TextField dscTF;
 
     protected void registerFields() {
@@ -32,26 +30,7 @@ public abstract class DocumentAbstractDialog extends AbstractDialog {
         docTypeCB.setValue(d.getType());
         nameTF.setText(d.getName());
         dscTF.setText(d.getDescription());
-        d.getOptCompany().ifPresent(comp -> {
-            companyCB.setValue(comp);
-        });
-        d.getOptAccount().ifPresent(acc -> accountCB.setValue(acc));
-        d.getOptDate().ifPresent(date -> {
-            dueDate.setValue(date);
-        });
-    }
-
-    protected void init() {
-        try {
-            companyCB.getItems().addAll(Facade.instance.getAllCompanies());
-        } catch (AccException ex) {
-            MainWindow.showException(ex);
-        }
-        try {
-            accountCB.getItems().addAll(Facade.instance.getAllAccounts());
-        } catch (AccException ex) {
-            MainWindow.showException(ex);
-        }
+        date.setValue(d.getDate());
     }
 
     public DocumentAbstractDialog(String title) {
@@ -61,27 +40,19 @@ public abstract class DocumentAbstractDialog extends AbstractDialog {
     @Override
     protected Node createContent() {
         GridPane gp = genGP();
-        int row = 0;
         docTypeCB = new DocTypeCB();
         nameTF = new TextField();
-        companyCB = new CompanyCB();
-        accountCB = new AccountCB();
-        dueDate = new AccDatePicker();
+        date = new AccDatePicker();
         dscTF = new TextField();
+        int row = 0;
+        gp.add(new Label(Messages.Datum.cm() + DEL), 0, row);
+        gp.add(date, 1, row);
+        row++;
         gp.add(new Label(Messages.Typ_dokladu.cm() + DEL), 0, row);
         gp.add(docTypeCB, 1, row);
         row++;
         gp.add(new Label(Messages.Jmeno.cm() + DEL), 0, row);
         gp.add(nameTF, 1, row);
-        row++;
-        gp.add(new Label(Messages.Organizace.cm() + DEL), 0, row);
-        gp.add(companyCB, 1, row);
-        row++;
-        gp.add(new Label(Messages.Ucet.cm() + DEL), 0, row);
-        gp.add(accountCB, 1, row);
-        row++;
-        gp.add(new Label(Messages.Datum_splatnosti.cm() + DEL), 0, row);
-        gp.add(dueDate, 1, row);
         row++;
         gp.add(new Label(Messages.Popis.cm() + DEL), 0, row);
         gp.add(dscTF, 1, row);

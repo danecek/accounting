@@ -15,10 +15,10 @@ public abstract class TransactionDAO {
 
     public static TransactionDAO instance = new TransactionDAODefault();
 
-    public abstract void create(Optional<LocalDate> date, long amount, AnalAcc madati,
+    public abstract void create(long amount, AnalAcc madati,
             AnalAcc dal, Optional<Document> document, Optional<Document> bindingDocument) throws AccException;
 
-    public abstract void update(TransactionId id, LocalDate date, long amount,
+    public abstract void update(TransactionId id, long amount,
             AnalAcc madati, AnalAcc dal, Optional<Document> document,
             Optional<Document> bindingDocument) throws AccException;
 

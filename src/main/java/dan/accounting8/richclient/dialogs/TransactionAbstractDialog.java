@@ -22,7 +22,7 @@ import javafx.scene.layout.GridPane;
 
 public abstract class TransactionAbstractDialog extends AbstractDialog {
 
-    protected DatePicker datePicker;
+  //  protected DatePicker datePicker;
     protected TextField amountTF;
     protected AccountCB madatiCB;
     protected AccountCB dalCB;
@@ -30,9 +30,6 @@ public abstract class TransactionAbstractDialog extends AbstractDialog {
     protected DocumentCB bindingDocumentCB;
 
     void set(Transaction t) {
-        t.getDate().ifPresent(d -> {
-            datePicker.setValue(d);
-        });
         amountTF.setText(Long.toString(t.getAmount()));
         madatiCB.setValue(t.getMaDati());
         dalCB.setValue(t.getDal());
@@ -45,7 +42,7 @@ public abstract class TransactionAbstractDialog extends AbstractDialog {
     }
 
     void init() {
-        datePicker.setValue(LocalDate.now());
+   ///     datePicker.setValue(LocalDate.now());
         ObservableList<AnalAcc> accounts;
         try {
             accounts = FXCollections.observableArrayList(Facade.instance.getAllAccounts());
@@ -71,22 +68,22 @@ public abstract class TransactionAbstractDialog extends AbstractDialog {
 
     @Override
     protected Node createContent() {
-        datePicker = new AccDatePicker(LocalDate.ofYearDay(Global.instance.getYear(), 1));
+    //    datePicker = new AccDatePicker(LocalDate.ofYearDay(Global.instance.getYear(), 1));
         amountTF = new TextField();
         dalCB = new AccountCB();
         madatiCB = new AccountCB();
         documentCB = new DocumentCB();
         bindingDocumentCB = new DocumentCB();
-        datePicker.valueProperty().addListener(this);
+      //  datePicker.valueProperty().addListener(this);
         madatiCB.valueProperty().addListener(this);
         dalCB.valueProperty().addListener(this);
         amountTF.textProperty().addListener(this);
         GridPane gp = genGP();
 
         int row = 0;
-        gp.add(new Label(Messages.Datum.cm() + DEL), 0, row);
-        gp.add(datePicker, 1, row);
-        row++;
+//        gp.add(new Label(Messages.Datum.cm() + DEL), 0, row);
+//        gp.add(datePicker, 1, row);
+//        row++;
         gp.add(new Label(Messages.Castka.cm()), 0, row);
         gp.add(amountTF, 1, row);
         row++;
@@ -105,9 +102,9 @@ public abstract class TransactionAbstractDialog extends AbstractDialog {
     }
 
     protected Optional<String> err() {
-        if (datePicker.getValue().getYear() != Global.instance.getYear()) {
-            return Optional.of(Messages.rok_musi_byt_letosni.cm());
-        }
+//        if (datePicker.getValue().getYear() != Global.instance.getYear()) {
+//            return Optional.of(Messages.rok_musi_byt_letosni.cm());
+//        }
         try {
             Long.parseLong(amountTF.getText());
         } catch (NumberFormatException ex) {

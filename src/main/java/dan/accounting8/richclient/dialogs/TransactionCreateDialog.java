@@ -50,7 +50,8 @@ public class TransactionCreateDialog extends TransactionAbstractDialog {
     @Override
     public void ok() {
         try {
-            Facade.instance.createTransaction(datePicker.getValue(),
+            Facade.instance.createTransaction(
+//datePicker.getValue(),
                     Long.parseLong(amountTF.getText()),
                     madatiCB.getValue(), dalCB.getValue(), documentCB.getOptDocument(),
                     bindingDocumentCB.getOptDocument());

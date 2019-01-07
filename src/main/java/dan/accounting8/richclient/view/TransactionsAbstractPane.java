@@ -24,13 +24,9 @@ public abstract class TransactionsAbstractPane extends AbstrPane {
     public static class TransactionP extends Transaction {
 
         public TransactionP(Transaction t) {
-            super(t.getId(), t.getDate(), t.getAmount(), t.getMaDati(),
+            super(t.getId(), t.getAmount(), t.getMaDati(),
                     t.getDal(), t.getDocument(), t.getRelatedDocument());
 
-        }
-
-        public String getDateText() {
-            return date.isPresent() ? date.get().format(Global.instance.df()) : "";
         }
 
         public String getMaDatiNumber() {

@@ -1,17 +1,10 @@
 package dan.accounting8.richclient;
 
-import dan.accounting8.integration.AccountDAO;
-import dan.accounting8.integration.TransactionDAO;
-import dan.accounting8.integration.impl.AcountDAODefault;
-import dan.accounting8.integration.impl.CompanyDAO;
-import dan.accounting8.integration.impl.DocumentDAO;
-import dan.accounting8.integration.impl.TransactionDAODefault;
 import dan.accounting8.richclient.view.AccountsPane;
 import dan.accounting8.richclient.controller.AccMenuBar;
 import dan.accounting8.richclient.controller.actions.ExitAction;
 import dan.accounting8.richclient.dialogs.AccAlert;
 import dan.accounting8.richclient.view.AbstrPane;
-import dan.accounting8.richclient.view.CompanyPane;
 import dan.accounting8.richclient.view.DocumentPane;
 import dan.accounting8.richclient.view.TransactionsPane;
 import dan.accounting8.util.Messages;
@@ -65,16 +58,6 @@ public class MainWindow extends Application {
 
     public void refreshAccountPane() {
         getAccountPane().ifPresent((ap) -> (ap).refresh());
-    }
-
-    public Optional<CompanyPane> getCompanyPane() {
-        return tabPane.getTabs().stream()
-                .filter((t) -> t.getText().equals(Messages.Spolecnosti.cm()))
-                .map((t) -> (CompanyPane) t.getContent()).findFirst();
-    }
-
-    public void refreshCompanyPane() {
-        getCompanyPane().ifPresent((ap) -> (ap).refresh());
     }
 
     public Stream<Tab> getTabByName(String title) {

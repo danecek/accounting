@@ -6,11 +6,10 @@ import java.util.Optional;
 
 public class Transaction {
 
-    public Transaction(TransactionId id, Optional<LocalDate> date, long amount,
+    public Transaction(TransactionId id, long amount,
             AnalAcc maDati, AnalAcc dal, Optional<Document> document,
             Optional<Document> bindingDocument) {
         this.id = id;
-        this.date = date;
         this.amount = amount;
         this.maDati = maDati;
         this.dal = dal;
@@ -19,7 +18,6 @@ public class Transaction {
     }
 
     public final TransactionId id;
-    protected final Optional<LocalDate> date;
     public final long amount;
     public final AnalAcc maDati;
     protected final AnalAcc dal;
@@ -37,7 +35,17 @@ public class Transaction {
      * @return the date
      */
     public Optional<LocalDate> getDate() {
-        return date;
+        if (!document.isPresent()) {
+            return Optional.empty();
+        }
+        return Optional.of(document.get().getDate());
+    }
+
+    public String getDateText() {
+        if (!document.isPresent()) {
+            return "";
+        }
+        return document.get().getDate().format(Global.instance.df());
     }
 
     /**
@@ -78,15 +86,12 @@ public class Transaction {
         return document;
     }
 
-    /**
-     * @return the bindingDocument
-     */
     public Optional<Document> getRelatedDocument() {
         return relatedDocument;
     }
 
     public boolean isInit() {
-        return !date.isPresent();
+        return !document.isPresent();
     }
 
 }

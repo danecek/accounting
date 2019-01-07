@@ -16,7 +16,7 @@ public class TransactionDeleteDialog extends TransactionAbstractDialog {
         super(Messages.Zrus_transakci.cm());
         id = t.getId();
         set(t);
-        datePicker.setDisable(true);
+ //       datePicker.setDisable(true);
         amountTF.setDisable(true);
         madatiCB.setDisable(true);
         dalCB.setDisable(true);

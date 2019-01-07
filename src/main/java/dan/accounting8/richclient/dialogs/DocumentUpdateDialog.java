@@ -16,7 +16,6 @@ public class DocumentUpdateDialog extends DocumentAbstractDialog {
         this.d = d;
         registerFields();
         setFields(d);
-        init();
     }
 
     @Override
@@ -25,9 +24,7 @@ public class DocumentUpdateDialog extends DocumentAbstractDialog {
                 d.getId(),
                 docTypeCB.getValue(),
                 nameTF.getText(),
-                companyCB.getOptCompany(),
-                accountCB.getOptAccount(),
-                dueDate.getOptDate(),
+                date.getValue(),
                 dscTF.getText());
         MainWindow.instance.refreshDocumentPanes();
     }
