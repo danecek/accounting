@@ -15,7 +15,7 @@ and open the template in the editor.
 .text-input:disabled {
     -fx-opacity: 1.0;
 }
-/*
+
 .root{
-    -fx-font-size: 20pt;
-}*/
+    -fx-font-size: 25px;
+}
