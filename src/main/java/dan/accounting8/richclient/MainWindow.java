@@ -134,7 +134,8 @@ public class MainWindow extends Application {
         primaryStage.setTitle(Messages.Ucetnictvi.cm());
         tabPane = new TabPane();
         VBox root = new VBox(libMenuBar = new AccMenuBar(), tabPane);
-        Scene s = new Scene(root, 2000, 1600);
+       //primaryStage.getWidth()
+        Scene s = new Scene(root,  primaryStage.getMaxWidth(), primaryStage.getMaxHeight());
         s.getStylesheets().addAll(getClass()
                 .getResource("/dan/accounting8/richclient/css.css").toExternalForm());
         primaryStage.setScene(s);
